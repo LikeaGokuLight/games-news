@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// Page Home
+import Home from "./page/Home";
+import SearchNav from "./components/SearchNav";
+import Footer from "./components/Footer";
+// Global Styles
+import GlobalStyles from "./components/GlobalStyles";
+// React Router dom
+import {Routes, Route } from "react-router-dom";
+// Uuid for key
+import { v4 as uuidv4  } from "uuid";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+
+
+    return (
+        <div>
+            <GlobalStyles />
+            <SearchNav />
+            <Routes>
+                {
+                    ['/', 'games/:id'].map((path) => (
+                        <Route key={uuidv4()} path={path} element={<Home />} />
+                    ))
+                }
+            </Routes>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
